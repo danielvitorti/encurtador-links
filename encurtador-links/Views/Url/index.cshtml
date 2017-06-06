@@ -1,0 +1,95 @@
+﻿@{
+	ViewBag.Title = "index";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model IEnumerable<encurtador_links.Models.Url>
+@{
+    ViewBag.Title = "Index";
+}
+<h2>Links encurtados</h2>
+
+ 
+<table class="table" id="tblUrls" >  
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.urlSite)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.urlCuted)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.urlAcessos)
+            </th>
+            <th></th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.urlSite)
+                </td>
+                <td>
+                    
+                    
+                    <a href="http://localhost/encurtador-links/u/@Html.DisplayFor(modelItem => item.urlCuted)">
+                    http://localhost/encurtador-links/u/@Html.DisplayFor(modelItem => item.urlCuted)</a>
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.urlAcessos)
+                </td>
+                <td>
+                    @Html.ActionLink("Alterar", "alterar", new { id = item.id }) |
+                    <button type="button" class="btn btn-link" data-item="@item.id">Deletar</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>  
+
+<script type="text/javascript">  
+        $(document).ready(function () {
+            $(".btn-link").click(function () {
+                var id = $(this).attr('data-item');
+                if (confirm("Você tem certeza que gostaria de excluir este registro?")) {
+                	
+                    $.ajax({
+                        method: "POST",
+                        url: "url/delete/" + id,
+                        success: function (data) {
+                            $("#tblUrls tbody tr").remove();
+                            $.each(data, function (i, url) {
+                                $("#tblUrls tbody").append(
+                                    "<tr>" +
+                                    "   <td>" + url.id + "</td>" +
+                                    "   <td>" + url.urlSite + "</td>" +
+                                    "   <td>" + url.urlCuted + "</td>" +
+                                    "   <td>" + url.urlAcessos + "</td>" +
+                                    "   <td>" +
+                                    "       <a href='/url/alterar/" + url.Id + "'>Alterar</a> |" +
+                                    "       <button type=\"button\" class=\"btn btn-link\" data-item=\"" + url.Id + "\">Deletar</button>" +
+                                    "   </td>" +
+                                    "</tr>"
+                                );
+                            });
+                        },
+                        error: function (data,e) {
+                            alert("Houve um erro na pesquisa.");
+                        }
+                    });
+                }
+            });
+        });
+</script> 
+

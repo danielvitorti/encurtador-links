@@ -1,0 +1,6 @@
+C:\projetos\net\encurtador-links\encurtador-links\bin\encurtador-links.dll
+C:\projetos\net\encurtador-links\encurtador-links\bin\encurtador-links.pdb
+C:\projetos\net\encurtador-links\encurtador-links\obj\Debug\encurtador-links.csprojResolveAssemblyReference.cache
+C:\projetos\net\encurtador-links\encurtador-links\obj\Debug\encurtador-links.dll
+C:\projetos\net\encurtador-links\encurtador-links\obj\Debug\encurtador-links.pdb
+C:\projetos\net\encurtador-links\encurtador-links\bin\MySql.Data.dll

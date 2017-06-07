@@ -51,7 +51,7 @@ namespace encurtador_links.Controllers
 			}
 			else
 			{
-			 	// pegar do flashbag, aquela variavel la do session
+			 	
 			 	return View();
 			}
 			

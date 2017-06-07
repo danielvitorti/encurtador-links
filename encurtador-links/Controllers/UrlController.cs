@@ -44,7 +44,7 @@ namespace encurtador_links.Controllers
 			Sessao.verificaSessao();
 			url.urlNormal = Request.Form["urlNormal"];
 			url.urlSite = Request.Form["urlSite"];
-			url.urlUsuario = Convert.ToInt16(Sessao.retornaDadoSessao("usuarioId")); // teste apenas
+			url.urlUsuario = Convert.ToInt16(Sessao.retornaDadoSessao("usuarioId")); 
 			
 			
 			if(ModelState.IsValid)

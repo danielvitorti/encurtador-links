@@ -4,7 +4,8 @@
 	Layout = "~/Views/Shared/_Login.cshtml";
 }
 
-<h2>Novo usuario</h2>
+<h2>Novo usuário</h2>
+
 
 
 @using (Html.BeginForm())
@@ -15,6 +16,10 @@
         
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        
+        <div class="form-group">
+        	@ViewBag.Error
+        </div>
         <div class="form-group">
             @Html.LabelFor(model => model.nome, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10 col-lg-10 col-sm-12 col-xs-12">
@@ -56,9 +61,6 @@
     </div>
 }
 
-<div>  
-    @Html.ActionLink("Listagem", "index")
-</div>  
 <script language="javascript" type="text/javascript"  src ="~/Scripts/jquery.validate.min.js" />  
 <script language="javascript" type="text/javascript" src ="~/Scripts/jquery.validate.unobtrusive.min.js" />  
 

@@ -57,8 +57,9 @@ namespace encurtador_links.Controllers
 				}
 				else
 				{
-					Response.Write("Usuario já cadastrado!");
-					Response.End();
+					
+					ViewBag.Error = "Este e-mail já se encontra cadastrado!";
+					return View();
 				}
 			}
 			return View();

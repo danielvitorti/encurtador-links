@@ -5,6 +5,7 @@ using encurtador_links.Repository;
 using System.Security.Cryptography;
 using System.Text;
 using System.Web;
+using encurtador_links.Library;
 
 namespace encurtador_links.Controllers
 {
@@ -32,39 +33,27 @@ namespace encurtador_links.Controllers
 		{
 			
 			Usuario usuario = new Usuario();
+			Criptografia criptografia = new Criptografia();
 			
-			MD5 md5 = MD5.Create();
-			
-			byte[] data = md5.ComputeHash(Encoding.UTF8.GetBytes(Request.Form["senha"]));
-			
-			
-			foreach (byte b in data)
-			{
-				usuario.senha += String.Format("{0:x2}", b);
-			}
-			
+			usuario.senha = criptografia.RetornarMD5(Request.Form["senha"]);
 
-		
 			usuario.email = Request.Form["email"];
 			
-			
-			
-			 var usuarioLogar = usuarioRepository.GetByEmailSenha(usuario);
+ 		    var usuarioLogar = usuarioRepository.GetByEmailSenha(usuario);
 			 
-			 if (usuarioLogar != null)
-			 {
+			if (usuarioLogar != null)
+			{
 	 	        Session["usuarioId"] = usuarioLogar.id.ToString();
-                Session["usuarioNome"] = usuarioLogar.nome;
-                
+                Session["usuarioNome"] = usuarioLogar.nome;                
                 
                 return Redirect("/encurtador-links");
         
-			 }
-			 else
-			 {
+			}
+			else
+			{
 			 	// pegar do flashbag, aquela variavel la do session
 			 	return View();
-			 }
+			}
 			
 			 
 		

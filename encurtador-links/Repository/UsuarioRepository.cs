@@ -163,6 +163,7 @@ namespace encurtador_links.Repository
 				cmd.Parameters.AddWithValue("@email", entity.email);
 				cmd.Parameters.AddWithValue("@senha", entity.senha);
 				cmd.Parameters.AddWithValue("@dataCadastro", entity.dataCadastro); // deixado fixo por enquanto porque tem que peg
+				cmd.Parameters.AddWithValue("@status",entity.status);
 				
 				try
 				{
@@ -248,6 +249,106 @@ namespace encurtador_links.Repository
 		
 		
 	}
+		
+		
+		/*
+		  * 
+		  * public Usuario GetByEmailSenha(Usuario usuario)
+	{
+		
+		using (var conn = new MySqlConnection(this.StringConnection))
+		{
+			string sql = "Select Id, nome FROM Usuarios WHERE email=@email and senha=@senha";
+			
+			MySqlCommand cmd = new MySqlCommand(sql, conn);
+			
+			cmd.Parameters.AddWithValue("@email", usuario.email);
+			cmd.Parameters.AddWithValue("@senha", usuario.senha); 
+			
+			
+			Usuario u = null;
+			
+			try
+			{
+				
+				conn.Open();
+				using (var reader = cmd.ExecuteReader(CommandBehavior.CloseConnection))
+				{
+					if (reader.HasRows)
+					{
+						if (reader.Read())
+						{
+							
+							u = new Usuario();
+							u.id = Convert.ToInt16(reader["id"]);
+							u.nome = reader["nome"].ToString();
+							
+						}
+					}
+				}
+			}
+			catch (Exception e)
+			{
+				throw e;
+			}
+			return u;
+		}
+		
+		
+	}
+		
+		  * */
+	
+
+ 
+		 public bool verificaExisteEmailUsuario(Usuario usuario)
+		 {
+		 		
+				bool retorno = false;
+				using (var conn = new MySqlConnection(this.StringConnection))
+				{
+					
+					string sql = "Select email from usuarios where email=@email";
+					
+					MySqlCommand cmd = new MySqlCommand(sql, conn);
+			
+					cmd.Parameters.AddWithValue("@email", usuario.email);
+					
+					
+					try
+					{
+						
+		 				conn.Open();
+						using (var reader = cmd.ExecuteReader(CommandBehavior.CloseConnection))
+						{
+							if (reader.HasRows)
+							{
+								if (reader.Read())
+								{
+									
+									retorno = true;
+									
+								}
+								
+							}
+							
+						}
+		 				
+					}
+					catch(Exception e)
+					{
+						throw e;
+						
+						
+					}
+				}
+				
+				
+				return retorno;
+		 		
+		 }
+		
+		
 	}
 	
 	

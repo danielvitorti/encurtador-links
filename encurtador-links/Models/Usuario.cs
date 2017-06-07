@@ -31,17 +31,21 @@ namespace encurtador_links.Models
 		public string nome{get; set;}
 		
 		[Display(Name="E-mail")]
+		[DataType(DataType.EmailAddress,ErrorMessage = "Endereço de e-mail inválido")]
 		[Required(ErrorMessage = "Campo obrigatorio")]
 		public string email{get; set;}
 		
 		[Display(Name="Senha")]
 		[Required(ErrorMessage = "Campo obrigatorio")]
+		[DataType(DataType.Password)]
 		public string senha{get; set;}
 		
 		
 		
 		[Display(Name="Confirmar senha")]
-		[Required(ErrorMessage = "Campo obrigatorio")]
+		[Required(ErrorMessage = "Campo obrigatorio")]		
+		[DataType(DataType.Password)]
+		[Compare("senha",ErrorMessage = "As senhas devem ser iguais.")]
 		public string confirmarSenha{get; set;}
 		
 		

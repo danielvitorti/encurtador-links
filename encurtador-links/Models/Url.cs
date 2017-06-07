@@ -26,6 +26,7 @@ namespace encurtador_links.Models
 		public int id{get; set;}
 		
 		[Display(Name="Link")]
+		[DataType(DataType.Url)]
 		[Required(ErrorMessage = "O campo Link é obrigatório")]
 		public string urlNormal{get; set;}
 		

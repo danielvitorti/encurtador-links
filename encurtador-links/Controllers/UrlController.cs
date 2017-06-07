@@ -52,23 +52,12 @@ namespace encurtador_links.Controllers
 				
 				var urlResult = urlRepository.GetMaxId(url);
 				
-				url.urlCuted = Convert.ToString(Convert.ToBase64String(Encoding.UTF8.GetBytes(Convert.ToString(urlResult.id)))); // -- Converter aqui para base 64
+				Criptografia criptografia = new Criptografia();
+				
+				url.urlCuted = criptografia.Base64(Convert.ToString(urlResult.id));
+				 
 				
 				urlRepository.Save(url);
-				
-				
-				// -- tem que encurtar agora 
-				
-				
-				/*Url urlAlterar = new Url();
-				
-				urlAlterar.urlCuted = Convert.ToString(Convert.ToBase64String(Encoding.UTF8.GetBytes(Convert.ToString(urlResult.id)))); // -- Converter aqui para base 64
-				urlAlterar.urlNormal = url.urlNormal;
-				urlAlterar.urlSite = url.urlSite;
-				url.urlUsuario = Convert.ToInt16(Sessao.retornaDadoSessao("usuarioId"));
-				
-		
-				urlRepository.Update(urlAlterar); */
 				
 				return RedirectToAction("index");
 			}

@@ -1,5 +1,9 @@
 ﻿using System;
 using System.Web.Mvc;
+using encurtador_links.Models;
+using System.Security.Cryptography;
+using encurtador_links.Library;
+using encurtador_links.Repository;
 
 namespace encurtador_links.Controllers
 {
@@ -23,9 +27,40 @@ namespace encurtador_links.Controllers
 			return View();
 		}
 		
+		
+		
 		[HttpPost]
-		public ActionResult Create(FormCollection values)
+		public ActionResult cadastrar(Usuario usuario,FormCollection values)
 		{
+			
+			Criptografia criptografia = new Criptografia();
+			
+			usuario.nome = Request.Form["nome"];
+			usuario.email = Request.Form["email"];
+			usuario.senha = criptografia.RetornarMD5(Request.Form["senha"]);
+			usuario.status = "0";
+			
+			
+			
+			
+			if(ModelState.IsValid)
+			{
+				
+				UsuarioRepository usuarioRepository = new UsuarioRepository();
+				
+				if(usuarioRepository.verificaExisteEmailUsuario(usuario) == false)
+				{
+					usuarioRepository.Save(usuario);
+					
+					return Redirect("/encurtador-links/login");
+					
+				}
+				else
+				{
+					Response.Write("Usuario já cadastrado!");
+					Response.End();
+				}
+			}
 			return View();
 		}
 		

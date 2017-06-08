@@ -77,8 +77,21 @@ namespace encurtador_links.Library
     	
     	input = Convert.ToString(Convert.ToBase64String(Encoding.UTF8.GetBytes(input)));
     	
+    	
     	return input;
     
+    }
+    
+    public string Base64Decode(string input )
+    {
+		
+		input = Encoding.UTF8.GetString(Convert.FromBase64String(input));
+    	
+    	
+    	return input;
+    	
+    	
+    	
     }
     
 	}

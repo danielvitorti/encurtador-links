@@ -251,55 +251,7 @@ namespace encurtador_links.Repository
 	}
 		
 		
-		/*
-		  * 
-		  * public Usuario GetByEmailSenha(Usuario usuario)
-	{
 		
-		using (var conn = new MySqlConnection(this.StringConnection))
-		{
-			string sql = "Select Id, nome FROM Usuarios WHERE email=@email and senha=@senha";
-			
-			MySqlCommand cmd = new MySqlCommand(sql, conn);
-			
-			cmd.Parameters.AddWithValue("@email", usuario.email);
-			cmd.Parameters.AddWithValue("@senha", usuario.senha); 
-			
-			
-			Usuario u = null;
-			
-			try
-			{
-				
-				conn.Open();
-				using (var reader = cmd.ExecuteReader(CommandBehavior.CloseConnection))
-				{
-					if (reader.HasRows)
-					{
-						if (reader.Read())
-						{
-							
-							u = new Usuario();
-							u.id = Convert.ToInt16(reader["id"]);
-							u.nome = reader["nome"].ToString();
-							
-						}
-					}
-				}
-			}
-			catch (Exception e)
-			{
-				throw e;
-			}
-			return u;
-		}
-		
-		
-	}
-		
-		  * */
-	
-
  
 		 public bool verificaExisteEmailUsuario(Usuario usuario)
 		 {

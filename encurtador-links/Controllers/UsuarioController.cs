@@ -38,7 +38,7 @@ namespace encurtador_links.Controllers
 			usuario.nome = Request.Form["nome"];
 			usuario.email = Request.Form["email"];
 			usuario.senha = criptografia.RetornarMD5(Request.Form["senha"]);
-			usuario.status = "0";
+			usuario.status = "1"; // -- Pode cadastrar o usuario como inativo, só que aí tem que implementar a tela de ativaçao, que é a que vai por email pro cara ativar o cadastro
 			
 			
 			

@@ -23,6 +23,8 @@
                 @Html.DisplayNameFor(model => model.urlCuted)
             </th>
             <th>
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.urlAcessos)
             </th>
             <th></th>
@@ -42,9 +44,12 @@
                 <td>
                     
                     
-                    <a href="http://localhost/encurtador-links/u/@Html.DisplayFor(modelItem => item.urlCuted)">
-                    http://localhost/encurtador-links/u/@Html.DisplayFor(modelItem => item.urlCuted)</a>
+                    <a href="http://localhost/encurtador-links/u/i/@Html.DisplayFor(modelItem => item.urlCuted)">
+                    http://localhost/encurtador-links/u/i/@Html.DisplayFor(modelItem => item.urlCuted)</a>
 
+                </td>
+                <td>
+                	<input type="button" value="Copiar" />
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.urlAcessos)
@@ -75,6 +80,7 @@
                                     "   <td>" + url.id + "</td>" +
                                     "   <td>" + url.urlSite + "</td>" +
                                     "   <td>" + url.urlCuted + "</td>" +
+                                    "   <td>" + "<input type='button' value='Copiar' />"+ "</td>"+ 
                                     "   <td>" + url.urlAcessos + "</td>" +
                                     "   <td>" +
                                     "       <a href='/url/alterar/" + url.Id + "'>Alterar</a> |" +
